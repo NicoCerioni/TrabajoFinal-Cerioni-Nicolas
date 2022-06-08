@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Cripto Blog!</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'AppCoder/css.inicio/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cripto Blog!</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href={% url 'acceso' %}>Log out</a></li>
+                        <li class="nav-item"><a class="nav-link" href={% url 'about' %}>About</a></li>
+                       
+                        {% if not request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href={% url 'acceso' %}>Login</a></li>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href={% url 'profile' %}>Hola, {{user.username}}!</a></li>
+                        {% endif %}
+
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href={% url 'read_post' %}>Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder" style=color:cadetblue >Editar mi Blog!</h1>
+                </div>
+            </div>
+        </header>
+
+{% load static %}
+
+
+
+<form action="{% url 'update_post' pk %}" method="POST">
+    {% csrf_token %}
+   
+   
+<!-- Page content-->
+       
+<div class="container"><p class="m-0 text-center text-white"></p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    
+                    <h2 class="fw-bolder mb-1" style=color:cadetblue >Título:</h2>
+                    <p class="fs-5 mb-4">{{ formulario.title }}</p>
+                    <!-- Post meta content-->
+                    <h3 class="fw-bolder mb-1" style=color:cadetblue> Fecha: </div>
+                        <p class="fs-5 mb-4">{{ formulario.date }}</p>
+                    <!-- Post categories-->
+                    <h3 class="fw-bolder mb-1" style=color:cadetblue >Subtítulo: </h3>
+                    <p class="fs-5 mb-4">{{ formulario.subtitle }}</p>
+                </header>
+                <!-- Preview image figure-->
+                <h3 class="fw-bolder mb-1" style=color:cadetblue >Cargar Imagen: </h3>
+                <figure class="mb-4"><img class="img-fluid rounded" />{{ formulario.image }} </figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <h3 class="fw-bolder mb-1" style=color:cadetblue >Contenido:</h3>
+                    <p class="fs-5 mb-4">{{ formulario.content }}</p>
+                     </section>
+            </article>
+        </div>
+
+        <a href={% url 'read_post' %} class="btn btn-primary">Cancelar</a> 
+        <button type="submit" class="btn btn-primary">Guardar</button>
+         
+
+</p></div>
+
+
+</form>   
+    </div>
+</div>
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+    
+</html>
+
+
+
+
+
+
+
+
+
